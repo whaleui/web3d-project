@@ -1,0 +1,215 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+
+const OpenSource = () => {
+  const [activeTab, setActiveTab] = useState('libraries');
+
+  const libraries = [
+    {
+      name: 'Web3.js',
+      description: '以太坊JavaScript API，用于与以太坊区块链交互',
+      useCase: '连接钱包、调用智能合约、查询链上数据',
+      link: 'https://web3js.org/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Web3.js library ethereum blockchain interaction minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: 'D3.js',
+      description: '数据可视化库，用于创建交互式图表',
+      useCase: 'K线图、深度图、资产分布饼图',
+      link: 'https://d3js.org/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=D3.js data visualization chart library minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: 'Tailwind CSS',
+      description: '实用优先的CSS框架，用于快速构建响应式界面',
+      useCase: '构建Apple风格的响应式UI',
+      link: 'https://tailwindcss.com/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Tailwind CSS framework responsive design minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: 'Framer Motion',
+      description: 'React动画库，用于创建流畅的微动效',
+      useCase: '价格涨跌动效、页面过渡、交互动画',
+      link: 'https://www.framer.com/motion/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Framer Motion animation library smooth effects minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: 'Lottie',
+      description: 'Adobe After Effects动画的JSON格式库',
+      useCase: '复杂流程动画、加载动画',
+      link: 'https://lottiefiles.com/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Lottie animation library Adobe After Effects minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: 'ECharts',
+      description: '百度开源的交互式图表库',
+      useCase: 'K线图、成交量图、资产趋势图',
+      link: 'https://echarts.apache.org/',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ECharts chart library K line chart minimalist line art pinterest style&image_size=square'
+    }
+  ];
+
+  const components = [
+    {
+      name: '按钮组件',
+      description: 'Apple风格的按钮，支持不同状态和样式',
+      code: '<button className="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">按钮</button>',
+      link: '#',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=button component Apple style different states minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: '卡片组件',
+      description: '模块化卡片布局，支持阴影和悬停效果',
+      code: '<div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">卡片内容</div>',
+      link: '#',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=card component modular layout hover effect minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: '导航栏组件',
+      description: '响应式导航栏，支持Web端和移动端',
+      code: '<nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">导航内容</nav>',
+      link: '#',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=navbar component responsive design web mobile minimalist line art pinterest style&image_size=square'
+    },
+    {
+      name: '表单组件',
+      description: 'Apple风格的表单输入框，支持验证和反馈',
+      code: '<input type="text" className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="输入内容" />',
+      link: '#',
+      illustration: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=form component Apple style input validation feedback minimalist line art pinterest style&image_size=square'
+    }
+  ];
+
+  return (
+    <div className="space-y-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-8"
+      >
+        <h1 className="text-3xl font-semibold mb-4 text-[#37352f]">开源宝藏</h1>
+        <p className="text-[#6b6964]">
+          推荐可直接复用的开源开发库和设计组件，加速Web3与金融交易产品的设计落地
+        </p>
+      </motion.div>
+
+      {/* Tab Navigation */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="flex flex-wrap gap-2 mb-8"
+      >
+        {
+          [
+            { id: 'libraries', label: '开发库' },
+            { id: 'components', label: '设计组件' }
+          ].map((tab, index) => (
+            <motion.button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2 rounded-md font-medium transition-all ${activeTab === tab.id ? 'bg-[#37352f] text-white' : 'bg-[#f7f6f3] hover:bg-[#e9e9e7]'}`}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 * index }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {tab.label}
+            </motion.button>
+          ))
+        }
+      </motion.div>
+
+      {/* Tab Content */}
+      <div>
+        {/* 开发库 */}
+        {activeTab === 'libraries' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {libraries.map((library, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ y: -2, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
+                className="bg-white p-4 rounded-md border border-[#e9e9e7]"
+              >
+                <div className="w-full h-32 bg-[#f7f6f3] rounded-md flex items-center justify-center mb-4">
+                  <img 
+                    src={library.illustration} 
+                    alt={library.name} 
+                    className="w-24 h-24 object-contain"
+                    style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
+                  />
+                </div>
+                <h3 className="text-lg font-medium mb-2 text-[#37352f]">{library.name}</h3>
+                <p className="text-sm text-[#6b6964] mb-3">{library.description}</p>
+                <div className="mb-3">
+                  <h4 className="text-sm font-medium mb-2 text-[#37352f]">设计师使用场景</h4>
+                  <p className="text-sm text-[#6b6964]">{library.useCase}</p>
+                </div>
+                <a
+                  href={library.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#37352f] font-medium flex items-center text-sm"
+                >
+                  查看文档
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* 设计组件 */}
+        {activeTab === 'components' && (
+          <div className="space-y-6">
+            {components.map((component, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-white p-4 rounded-md border border-[#e9e9e7]"
+              >
+                <div className="w-full h-32 bg-[#f7f6f3] rounded-md flex items-center justify-center mb-4">
+                  <img 
+                    src={component.illustration} 
+                    alt={component.name} 
+                    className="w-24 h-24 object-contain"
+                    style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
+                  />
+                </div>
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-medium text-[#37352f]">{component.name}</h3>
+                  <a
+                    href={component.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#37352f] font-medium flex items-center text-sm"
+                  >
+                    设计源文件
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </a>
+                </div>
+                <p className="text-sm text-[#6b6964] mb-3">{component.description}</p>
+                <div className="bg-[#f7f6f3] p-3 rounded-md">
+                  <pre className="text-sm text-[#37352f] overflow-x-auto">{component.code}</pre>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default OpenSource;
