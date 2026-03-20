@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Book, Link, Diamond, Phone } from '@icon-park/react';
+import ShinyText from '../components/ShinyText';
+import BorderGlow from '../components/BorderGlow';
 
 const Home = () => {
   const features = [
@@ -77,8 +79,16 @@ const Home = () => {
             className="mx-auto w-full max-w-md rounded-xl shadow-md"
           />
         </motion.div>
-        <h1 className="text-3xl md:text-4xl font-semibold mb-4 text-[#37352f]">
-          Web3 & 金融交易设计师学习平台
+        <h1 className="text-3xl md:text-4xl font-semibold mb-4 text-[#37352f] theme-tech-dark:text-white">
+          <ShinyText 
+            text="Web3 & 金融交易设计师学习平台" 
+            className="theme-tech-dark:block hidden"
+            color="#e0e0e0"
+            shineColor="#ffffff"
+            speed={3}
+            delay={1}
+          />
+          <span className="theme-tech-dark:hidden">Web3 & 金融交易设计师学习平台</span>
         </h1>
         <p className="text-base text-[#6b6964] max-w-2xl mx-auto mb-8 px-4">
           用设计师视角系统拆解Web3与金融交易知识，让设计落地更直观、高效、有惊喜感
@@ -109,35 +119,70 @@ const Home = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl font-semibold text-center mb-8 text-[#37352f]"
+          className="text-2xl md:text-3xl font-semibold text-center mb-8 text-[#37352f] theme-tech-dark:text-white"
         >
-          核心功能
+          <ShinyText 
+            text="核心功能" 
+            className="theme-tech-dark:block hidden"
+            color="#e0e0e0"
+            shineColor="#ffffff"
+            speed={2.5}
+            delay={0.5}
+          />
+          <span className="theme-tech-dark:hidden">核心功能</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => {
             // 在移动端隐藏"链接捕手"、"开源宝藏"和"实战案例"
             const isMobileHidden = ['链接捕手', '开源宝藏', '实战案例库'].includes(feature.title);
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
-                className={`bg-white p-5 rounded-xl shadow-sm border border-[#e9e9e7] transition-all duration-300 ${isMobileHidden ? 'hidden md:block' : ''}`}
-              >
-                <div className="w-full h-28 bg-[#f7f6f3] rounded-lg flex items-center justify-center mb-4">
-                  <img 
-                    src={feature.illustration} 
-                    alt={feature.title} 
-                    className="w-20 h-20 object-contain"
-                    style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
-                  />
-                </div>
-                <div className="text-2xl mb-3 text-[#37352f]">{feature.icon}</div>
-                <h3 className="text-base font-medium mb-2 text-[#37352f]">{feature.title}</h3>
-                <p className="text-xs text-[#6b6964]">{feature.description}</p>
-              </motion.div>
+              <div key={index} className={`${isMobileHidden ? 'hidden md:block' : ''}`}>
+                <BorderGlow 
+                  className="theme-tech-dark:block hidden"
+                  color="#0070f3"
+                  size="md"
+                  intensity="medium"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.15 }}
+                    whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
+                    className="bg-[#181824] p-5 rounded-xl shadow-sm border border-[#46465a] transition-all duration-300 h-full"
+                  >
+                    <div className="w-full h-28 bg-[#2a2a3a] rounded-lg flex items-center justify-center mb-4">
+                      <img 
+                        src={feature.illustration} 
+                        alt={feature.title} 
+                        className="w-20 h-20 object-contain"
+                        style={{ filter: 'drop-shadow(0 0 0 1px white)' }}
+                      />
+                    </div>
+                    <div className="text-2xl mb-3 text-white">{feature.icon}</div>
+                    <h3 className="text-base font-medium mb-2 text-white">{feature.title}</h3>
+                    <p className="text-xs text-gray-400">{feature.description}</p>
+                  </motion.div>
+                </BorderGlow>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
+                  className="theme-tech-dark:hidden bg-white p-5 rounded-xl shadow-sm border border-[#e9e9e7] transition-all duration-300"
+                >
+                  <div className="w-full h-28 bg-[#f7f6f3] rounded-lg flex items-center justify-center mb-4">
+                    <img 
+                      src={feature.illustration} 
+                      alt={feature.title} 
+                      className="w-20 h-20 object-contain"
+                      style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
+                    />
+                  </div>
+                  <div className="text-2xl mb-3 text-[#37352f]">{feature.icon}</div>
+                  <h3 className="text-base font-medium mb-2 text-[#37352f]">{feature.title}</h3>
+                  <p className="text-xs text-[#6b6964]">{feature.description}</p>
+                </motion.div>
+              </div>
             );
           })}
         </div>
@@ -149,67 +194,151 @@ const Home = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl font-semibold text-center mb-8 text-[#37352f]"
+          className="text-2xl md:text-3xl font-semibold text-center mb-8 text-[#37352f] theme-tech-dark:text-white"
         >
-          知识板块
+          <ShinyText 
+            text="知识板块" 
+            className="theme-tech-dark:block hidden"
+            color="#e0e0e0"
+            shineColor="#ffffff"
+            speed={2.5}
+            delay={0.5}
+          />
+          <span className="theme-tech-dark:hidden">知识板块</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {knowledgeSections.map((section, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
-              className="bg-white p-5 rounded-xl shadow-sm border border-[#e9e9e7] transition-all duration-300"
-            >
-              <div className="w-full h-28 bg-[#f7f6f3] rounded-lg flex items-center justify-center mb-4">
-                <img 
-                  src={section.illustration} 
-                  alt={section.title} 
-                  className="w-20 h-20 object-contain"
-                  style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
-                />
-              </div>
-              <h3 className="text-base font-medium mb-2 text-[#37352f]">{section.title}</h3>
-              <p className="text-xs text-[#6b6964] mb-3">{section.description}</p>
-              <motion.a 
-                href={section.path} 
-                className="text-[#37352f] font-medium flex items-center text-sm"
-                whileHover={{ x: 4 }}
+            <div key={index}>
+              <BorderGlow 
+                className="theme-tech-dark:block hidden"
+                color="#0070f3"
+                size="md"
+                intensity="medium"
               >
-                开始学习
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5 ml-2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </motion.a>
-            </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
+                  className="bg-[#181824] p-5 rounded-xl shadow-sm border border-[#46465a] transition-all duration-300 h-full"
+                >
+                  <div className="w-full h-28 bg-[#2a2a3a] rounded-lg flex items-center justify-center mb-4">
+                    <img 
+                      src={section.illustration} 
+                      alt={section.title} 
+                      className="w-20 h-20 object-contain"
+                      style={{ filter: 'drop-shadow(0 0 0 1px white)' }}
+                    />
+                  </div>
+                  <h3 className="text-base font-medium mb-2 text-white">{section.title}</h3>
+                  <p className="text-xs text-gray-400 mb-3">{section.description}</p>
+                  <motion.a 
+                    href={section.path} 
+                    className="text-white font-medium flex items-center text-sm"
+                    whileHover={{ x: 4 }}
+                  >
+                    开始学习
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5 ml-2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </motion.a>
+                </motion.div>
+              </BorderGlow>
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
+                className="theme-tech-dark:hidden bg-white p-5 rounded-xl shadow-sm border border-[#e9e9e7] transition-all duration-300"
+              >
+                <div className="w-full h-28 bg-[#f7f6f3] rounded-lg flex items-center justify-center mb-4">
+                  <img 
+                    src={section.illustration} 
+                    alt={section.title} 
+                    className="w-20 h-20 object-contain"
+                    style={{ filter: 'drop-shadow(0 0 0 1px black)' }}
+                  />
+                </div>
+                <h3 className="text-base font-medium mb-2 text-[#37352f]">{section.title}</h3>
+                <p className="text-xs text-[#6b6964] mb-3">{section.description}</p>
+                <motion.a 
+                  href={section.path} 
+                  className="text-[#37352f] font-medium flex items-center text-sm"
+                  whileHover={{ x: 4 }}
+                >
+                  开始学习
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5 ml-2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
+                </motion.a>
+              </motion.div>
+            </div>
           ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="bg-[#f7f6f3] rounded-xl p-8 text-center mb-16"
-      >
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-[#37352f]">1小时建立完整知识框架</h2>
-          <p className="text-sm text-[#6b6964] mb-6 max-w-xl mx-auto">
-            消除Web3与金融交易的设计门槛，让设计过程像使用Apple产品一样直观、高效
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            className="w-full md:w-auto px-6 py-3 bg-[#37352f] text-white rounded-lg font-medium"
+      <div>
+        <BorderGlow 
+          className="theme-tech-dark:block hidden mx-auto max-w-2xl"
+          color="#0070f3"
+          size="lg"
+          intensity="medium"
+        >
+          <motion.section
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-[#181824] rounded-xl p-8 text-center mb-16 h-full"
           >
-            立即开始
-          </motion.button>
-        </div>
-      </motion.section>
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-white">
+                <ShinyText 
+                  text="1小时建立完整知识框架" 
+                  color="#e0e0e0"
+                  shineColor="#ffffff"
+                  speed={2.5}
+                  delay={0.5}
+                />
+              </h2>
+              <p className="text-sm text-gray-400 mb-6 max-w-xl mx-auto">
+                消除Web3与金融交易的设计门槛，让设计过程像使用Apple产品一样直观、高效
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                className="w-full md:w-auto px-6 py-3 bg-[#0070f3] text-white rounded-lg font-medium"
+              >
+                立即开始
+              </motion.button>
+            </div>
+          </motion.section>
+        </BorderGlow>
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="theme-tech-dark:hidden bg-[#f7f6f3] rounded-xl p-8 text-center mb-16"
+        >
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-[#37352f]">
+              1小时建立完整知识框架
+            </h2>
+            <p className="text-sm text-[#6b6964] mb-6 max-w-xl mx-auto">
+              消除Web3与金融交易的设计门槛，让设计过程像使用Apple产品一样直观、高效
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              className="w-full md:w-auto px-6 py-3 bg-[#37352f] text-white rounded-lg font-medium"
+            >
+              立即开始
+            </motion.button>
+          </div>
+        </motion.section>
+      </div>
     </div>
   );
 };

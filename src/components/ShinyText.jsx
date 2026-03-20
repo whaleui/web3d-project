@@ -1,42 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const ShinyText = ({ 
-  text, 
-  className = '',
-  variant = 'default',
-  ...props
+const ShinyText = ({
+  text,
+  color = '#b5b5b5',
+  shineColor = '#ffffff',
+  speed = 2,
+  delay = 0,
+  spread = 120,
+  yoyo = false,
+  pauseOnHover = false,
+  direction = 'left',
+  disabled = false,
+  className = ''
 }) => {
-  const variants = {
-    default: 'text-foreground',
-    primary: 'text-primary',
-    gradient: 'bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent',
+  const [isHovered, setIsHovered] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    if (!disabled) {
+      const interval = setInterval(() => {
+        if (!isHovered || !pauseOnHover) {
+          setAnimationKey(prev => prev + 1);
+        }
+      }, (speed + delay) * 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [disabled, isHovered, pauseOnHover, speed, delay]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const animationDirection = direction === 'left' ? 'to right' : 'to left';
+  const animationIteration = yoyo ? 'alternate' : 'infinite';
+
+  const gradientStyle = {
+    background: `linear-gradient(
+      ${direction === 'left' ? 90 : -90}deg,
+      transparent 0%,
+      transparent ${50 - spread / 2}%,
+      ${shineColor} ${50 - spread / 4}%,
+      ${shineColor} ${50 + spread / 4}%,
+      transparent ${50 + spread / 2}%,
+      transparent 100%
+    )`,
+    backgroundSize: '200% 100%',
+    backgroundPosition: direction === 'left' ? '100% 0' : '0 0',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    color: color,
+    animation: disabled || (pauseOnHover && isHovered)
+      ? 'none'
+      : `shine ${speed}s linear ${delay}s ${animationIteration}`,
+    animationDirection: animationDirection
   };
 
   return (
-    <span 
-      className={`relative inline-block font-semibold ${variants[variant]} ${className}`}
-      style={{
-        position: 'relative',
-        display: 'inline-block',
-      }}
-      {...props}
+    <span
+      ref={textRef}
+      className={`shiny-text ${className}`}
+      style={gradientStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      key={animationKey}
     >
       {text}
-      <span
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent)',
-          backgroundSize: '200% 100%',
-          backgroundPosition: '-200% 0',
-          pointerEvents: 'none',
-          mixBlendMode: 'overlay',
-          animation: 'shine 3s linear infinite',
-        }}
-      />
     </span>
   );
 };

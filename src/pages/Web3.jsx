@@ -3,13 +3,7 @@ import { motion } from 'framer-motion';
 
 const Web3 = () => {
   const [activeTab, setActiveTab] = useState('keywords');
-  const [expandedKeywords, setExpandedKeywords] = useState([]);
   const [imageColors, setImageColors] = useState({});
-
-  // 初始化所有关键词为展开状态
-  useEffect(() => {
-    setExpandedKeywords(Array(keywords.length).fill(true));
-  }, []);
 
   // 加载图片时获取主色调
   const loadImageColor = (imageUrl, key) => {
@@ -18,14 +12,6 @@ const Web3 = () => {
         ...prev,
         [key]: color
       }));
-    });
-  };
-
-  const toggleKeyword = (index) => {
-    setExpandedKeywords(prev => {
-      const newState = [...prev];
-      newState[index] = !newState[index];
-      return newState;
     });
   };
 
@@ -662,27 +648,9 @@ const Web3 = () => {
                 <h3 className="text-base font-medium mb-2 text-[#37352f]">{keyword.term}</h3>
                 <p className="text-[#37352f] text-xs mb-4">{keyword.designerView}</p>
                 
-                <button
-                  onClick={() => toggleKeyword(index)}
-                  className="text-xs text-[#6b6964] flex items-center"
-                >
-                  {expandedKeywords[index] ? '收起' : '查看详情'}
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-4 h-4 ml-2 transition-transform ${expandedKeywords[index] ? 'rotate-180' : ''}`}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
-                </button>
-                
-                {expandedKeywords[index] && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-4 pt-4 border-t border-[#e9e9e7]"
-                  >
-                    <p className="text-xs text-[#6b6964]">{keyword.description}</p>
-                  </motion.div>
-                )}
+                <div className="mt-4 pt-4 border-t border-[#e9e9e7]">
+                  <p className="text-sm text-[#6b6964]">{keyword.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>

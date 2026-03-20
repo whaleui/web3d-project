@@ -681,7 +681,7 @@ const LinkCatcher = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-900 via-fuchsia-900 to-rose-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="space-y-12 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* 头部 */}
         <motion.div 
@@ -690,17 +690,22 @@ const LinkCatcher = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12"
         >
-          <div className="w-full h-64 bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-amber-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-fuchsia-500/30">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-6"
+          >
             <img 
-              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=link catcher tool web scraping analysis modern futuristic design with neon colors&image_size=landscape_16_9" 
+              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=minimalist%20line%20art%20link%20catcher%20tool%20web%20scraping%20analysis%20modern%20clean%20design&image_size=landscape_16_9" 
               alt="链接捕手" 
-              className="w-80 h-40 object-contain"
+              className="mx-auto w-full max-w-2xl rounded-xl shadow-md"
             />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-400">
+          </motion.div>
+          <h1 className="text-3xl md:text-4xl font-semibold mb-4 text-[#37352f]">
             链接捕手
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base text-[#6b6964] max-w-2xl mx-auto mb-8 px-4">
             输入Web3/交易所/CFD平台相关链接，自动抓取页面核心信息并生成交易相关分析报告
           </p>
         </motion.div>
@@ -714,9 +719,10 @@ const LinkCatcher = () => {
         >
           <motion.button
             onClick={() => setShowCurrencyModule(!showCurrencyModule)}
-            className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-fuchsia-600 text-white rounded-lg font-medium transition-all hover:shadow-lg hover:shadow-fuchsia-500/30"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            className="w-full sm:w-auto px-6 py-3 bg-[#37352f] text-white rounded-lg font-medium text-center"
           >
             {showCurrencyModule ? '隐藏币种概念' : '查看币种概念'}
           </motion.button>
@@ -728,15 +734,15 @@ const LinkCatcher = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl border border-white/20"
+            className="bg-white rounded-2xl p-6 mb-8 shadow-md border border-[#e9e9e7]"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-400">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-[#37352f]">
               币种概念模块
             </h2>
             
             {/* 主流公链 & 头部 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-cyan-300">主流公链 & 头部</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">主流公链 & 头部</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.mainChains.map((currency, index) => (
                   <motion.div
@@ -744,16 +750,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl p-4 border border-cyan-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-cyan-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-cyan-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-cyan-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -762,7 +768,7 @@ const LinkCatcher = () => {
             
             {/* 稳定币 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-fuchsia-300">稳定币</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">稳定币</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {currencyData.stablecoins.map((currency, index) => (
                   <motion.div
@@ -770,16 +776,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-fuchsia-900/30 to-purple-900/30 rounded-xl p-4 border border-fuchsia-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-fuchsia-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-fuchsia-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-fuchsia-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -788,7 +794,7 @@ const LinkCatcher = () => {
             
             {/* DeFi 龙头 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-rose-300">DeFi 龙头</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">DeFi 龙头</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.defi.map((currency, index) => (
                   <motion.div
@@ -796,16 +802,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-rose-900/30 to-red-900/30 rounded-xl p-4 border border-rose-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-rose-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-rose-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-rose-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -814,7 +820,7 @@ const LinkCatcher = () => {
             
             {/* Layer2 扩容 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-amber-300">Layer2 扩容</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">Layer2 扩容</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.layer2.map((currency, index) => (
                   <motion.div
@@ -822,16 +828,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-amber-900/30 to-yellow-900/30 rounded-xl p-4 border border-amber-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-amber-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-amber-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-amber-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -840,7 +846,7 @@ const LinkCatcher = () => {
             
             {/* NFT / 元宇宙 / Meme */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-emerald-300">NFT / 元宇宙 / Meme</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">NFT / 元宇宙 / Meme</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.nftMetaverse.map((currency, index) => (
                   <motion.div
@@ -848,16 +854,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-emerald-900/30 to-green-900/30 rounded-xl p-4 border border-emerald-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-emerald-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-emerald-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-emerald-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -866,7 +872,7 @@ const LinkCatcher = () => {
             
             {/* AI + Web3 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-blue-300">AI + Web3</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">AI + Web3</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.aiWeb3.map((currency, index) => (
                   <motion.div
@@ -874,16 +880,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 rounded-xl p-4 border border-blue-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-blue-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-blue-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-blue-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -892,7 +898,7 @@ const LinkCatcher = () => {
             
             {/* 存储 / 隐私 */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-purple-300">存储 / 隐私</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">存储 / 隐私</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.storagePrivacy.map((currency, index) => (
                   <motion.div
@@ -900,16 +906,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-purple-900/30 to-violet-900/30 rounded-xl p-4 border border-purple-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-purple-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-purple-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-purple-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -918,7 +924,7 @@ const LinkCatcher = () => {
             
             {/* 再质押 / 模块化 */}
             <div className="mb-4">
-              <h3 className="text-xl font-semibold mb-4 text-cyan-300">再质押 / 模块化</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#37352f]">再质押 / 模块化</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currencyData.restaking.map((currency, index) => (
                   <motion.div
@@ -926,16 +932,16 @@ const LinkCatcher = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl p-4 border border-cyan-500/30 shadow-lg"
+                    className="bg-white rounded-xl p-4 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-bold text-white">{currency.code}</h4>
-                      <span className="text-sm text-gray-300">{currency.name}</span>
+                      <h4 className="text-lg font-bold text-[#37352f]">{currency.code}</h4>
+                      <span className="text-sm text-[#6b6964]">{currency.name}</span>
                     </div>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-cyan-300">对应项目:</span> {currency.project}</p>
-                      <p><span className="text-cyan-300">核心定位:</span> {currency.corePosition}</p>
-                      <p><span className="text-cyan-300">历史事件:</span> {currency.historicalEvents}</p>
+                      <p><span className="font-medium text-[#37352f]">对应项目:</span> {currency.project}</p>
+                      <p><span className="font-medium text-[#37352f]">核心定位:</span> {currency.corePosition}</p>
+                      <p><span className="font-medium text-[#37352f]">历史事件:</span> {currency.historicalEvents}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -949,18 +955,18 @@ const LinkCatcher = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl border border-white/20"
+          className="bg-white rounded-2xl p-6 mb-8 shadow-md border border-[#e9e9e7]"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="url" className="block text-sm font-medium mb-3 text-gray-200">输入链接</label>
+              <label htmlFor="url" className="block text-sm font-medium mb-3 text-[#37352f]">输入链接</label>
               <input
                 type="url"
                 id="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://example.com"
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-white placeholder-gray-400 transition-all"
+                className="w-full px-4 py-3 bg-white border border-[#e9e9e7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37352f] text-[#37352f] placeholder-[#6b6964] transition-all"
                 required
               />
             </div>
@@ -970,16 +976,17 @@ const LinkCatcher = () => {
                 id="useAI"
                 checked={useAI}
                 onChange={(e) => setUseAI(e.target.checked)}
-                className="w-5 h-5 text-fuchsia-600 rounded focus:ring-fuchsia-500 bg-white/10 border-white/30"
+                className="w-5 h-5 text-[#37352f] rounded focus:ring-[#37352f] bg-white border-[#e9e9e7]"
               />
-              <label htmlFor="useAI" className="ml-3 text-sm text-gray-300">使用AI智能分析（提供更详细的分析报告）</label>
+              <label htmlFor="useAI" className="ml-3 text-sm text-[#6b6964]">使用AI智能分析（提供更详细的分析报告）</label>
             </div>
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-gradient-to-r from-cyan-600 to-fuchsia-600 text-white rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-fuchsia-500/30"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
               whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              className="w-full py-3 bg-[#37352f] text-white rounded-lg font-medium text-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (useAI ? 'AI分析中...' : '分析中...') : '开始分析'}
             </motion.button>
@@ -992,9 +999,9 @@ const LinkCatcher = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20"
+            className="bg-white rounded-2xl p-6 shadow-md border border-[#e9e9e7]"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-400">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-[#37352f]">
               交易相关分析报告
             </h2>
             
@@ -1003,52 +1010,52 @@ const LinkCatcher = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl p-5 border border-cyan-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-cyan-300">交易相关分析</h3>
-                <p className="text-gray-300">{analysis.summary}</p>
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">交易相关分析</h3>
+                <p className="text-[#6b6964]">{analysis.summary}</p>
               </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="bg-gradient-to-br from-fuchsia-900/30 to-purple-900/30 rounded-xl p-5 border border-fuchsia-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-fuchsia-300">市场涨跌趋势</h3>
-                <p className="text-gray-300">{analysis.trendAnalysis}</p>
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">市场涨跌趋势</h3>
+                <p className="text-[#6b6964]">{analysis.trendAnalysis}</p>
               </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
-                className="bg-gradient-to-br from-rose-900/30 to-red-900/30 rounded-xl p-5 border border-rose-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-rose-300">交易核心功能</h3>
-                <p className="text-gray-300">{analysis.coreFeatures || analysis.layout}</p>
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">交易核心功能</h3>
+                <p className="text-[#6b6964]">{analysis.coreFeatures || analysis.layout}</p>
               </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
-                className="bg-gradient-to-br from-amber-900/30 to-yellow-900/30 rounded-xl p-5 border border-amber-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-amber-300">交易风险提示</h3>
-                <p className="text-gray-300">{analysis.riskDesign}</p>
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">交易风险提示</h3>
+                <p className="text-[#6b6964]">{analysis.riskDesign}</p>
               </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 }}
-                className="bg-gradient-to-br from-emerald-900/30 to-green-900/30 rounded-xl p-5 border border-emerald-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-emerald-300">交易相关关键词</h3>
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">交易相关关键词</h3>
                 <div className="flex flex-wrap gap-2">
                   {analysis.keywords.map((keyword, index) => (
-                    <span key={index} className="px-3 py-1.5 bg-gradient-to-r from-fuchsia-600/80 to-cyan-600/80 text-white rounded-full text-sm shadow-md hover:shadow-lg transition-all">
+                    <span key={index} className="px-3 py-1.5 bg-[#f7f6f3] text-[#37352f] rounded-full text-sm border border-[#e9e9e7] hover:bg-[#e9e9e7] transition-all">
                       {keyword}
                     </span>
                   ))}
@@ -1059,13 +1066,13 @@ const LinkCatcher = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.6 }}
-                className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 rounded-xl p-5 border border-blue-500/30 shadow-lg"
+                className="bg-white rounded-xl p-5 border border-[#e9e9e7] shadow-md hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-semibold mb-3 text-blue-300">交易功能优化建议</h3>
-                <ul className="space-y-2 text-gray-300">
+                <h3 className="text-lg font-semibold mb-3 text-[#37352f]">交易功能优化建议</h3>
+                <ul className="space-y-2 text-[#6b6964]">
                   {analysis.suggestions.map((suggestion, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="inline-block w-2 h-2 rounded-full bg-fuchsia-400 mt-2 mr-2"></span>
+                      <span className="inline-block w-2 h-2 rounded-full bg-[#37352f] mt-2 mr-2"></span>
                       {suggestion}
                     </li>
                   ))}
@@ -1078,14 +1085,14 @@ const LinkCatcher = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="mt-8 pt-6 border-t border-white/20"
+                className="mt-8 pt-6 border-t border-[#e9e9e7]"
               >
-                <h3 className="text-xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-cyan-400">
+                <h3 className="text-xl font-semibold mb-4 text-[#37352f]">
                   AI智能分析
                 </h3>
-                <div className="bg-gradient-to-r from-violet-900/80 to-fuchsia-900/80 p-5 rounded-xl border border-fuchsia-500/30 shadow-lg">
+                <div className="bg-white p-5 rounded-xl border border-[#e9e9e7] shadow-md">
                   {aiAnalysis.split('\n').map((paragraph, index) => (
-                    <p key={index} className="mb-3 text-gray-300">{paragraph}</p>
+                    <p key={index} className="mb-3 text-[#6b6964]">{paragraph}</p>
                   ))}
                 </div>
               </motion.div>
@@ -1093,16 +1100,18 @@ const LinkCatcher = () => {
             
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <motion.button 
-                className="flex-1 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg font-medium transition-all hover:shadow-lg hover:shadow-cyan-500/30"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                className="flex-1 py-3 bg-[#37352f] text-white rounded-lg font-medium text-center"
               >
                 保存到知识库
               </motion.button>
               <motion.button 
-                className="flex-1 py-3 bg-gradient-to-r from-fuchsia-600 to-rose-600 text-white rounded-lg font-medium transition-all hover:shadow-lg hover:shadow-fuchsia-500/30"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                className="flex-1 py-3 border border-[#e9e9e7] text-[#37352f] rounded-lg font-medium text-center"
               >
                 分享报告
               </motion.button>
